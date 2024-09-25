@@ -64,3 +64,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+.dashboard {
+  padding: 20px;
+}
+
+.chart-container {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.chart-container > div {
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
