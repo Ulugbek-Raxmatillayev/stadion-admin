@@ -1,11 +1,19 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const SideBar = () => {
+    const navigate = useNavigate()
+    function navMaster() {
+        navigate('/admin/masters')
+    }
+
+    function navDashboard() {
+        navigate('/admin/dashboard')
+    }
     return (
         <aside id="default-sidebar" className="fixed top-14 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
             <div className="h-full  overflow-y-auto bg-gray-50 dark:bg-gray-800">
                 <ul className="space-y-2 font-medium">
-                    <li>
+                    <li onClick={navDashboard}>
                         <a className="flex  items-center p-4 text-gray-900 hover:text-white dark:text-white hover:bg-gray-400 dark:hover:bg-gray-700 group">
                             <svg className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                 <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -14,7 +22,7 @@ const SideBar = () => {
                             <span className="ms-3">Dashboard</span>
                         </a>
                     </li>
-                    <li>
+                    <li onClick={navMaster}>
                         <a className="flex items-center p-4 px-3 text-gray-900 hover:text-white dark:text-white hover:bg-gray-400 dark:hover:bg-gray-700 group">
                             <svg className="w-7 h-7 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd" />

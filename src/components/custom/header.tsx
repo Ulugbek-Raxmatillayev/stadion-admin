@@ -1,17 +1,24 @@
 import { HeaderProps } from "@/helpers/interface/adminTypes/adminTypes";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Header: React.FC<HeaderProps> = ({ pageName }) => {
-    const [isOpenHDrop, setIsOpenHDrop] = useState(false)
-    function toggleOpen() {
+    const navigate = useNavigate()
+     const [isOpenHDrop, setIsOpenHDrop] = useState(false)
+
+     function toggleOpen() {
         setIsOpenHDrop(!isOpenHDrop)
+    }
+    function removeToken(){
+        localStorage.removeItem('token')
+        navigate('/login')
     }
     return (
 
 
         <nav className="bg-gray-50 border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a className="flex items-center space-x-2 ml-20 rtl:space-x-reverse">
+               <a className="flex items-center space-x-2 ml-20 rtl:space-x-reverse">
                     <i className="bi bi-list text-2xl"></i>
                     <span className="self-center text-lg font-medium whitespace-nowrap dark:text-white">{pageName}</span>
                 </a>
@@ -45,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ pageName }) => {
 
                                     <li>
 
-                                        <a className="flex gap-2  px-4 w-full py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        <a onClick={removeToken} className="flex gap-2  px-4 w-full py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                             <i className="bi bi-box-arrow-left"></i>
                                             <span>Log out</span>
                                         </a>
