@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ pageName }) => {
     return (
 
 
-        <nav className="bg-gray-50 border-gray-200 dark:bg-gray-900">
+        <nav className="bg-gray-50 fixed w-full border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                <a className="flex items-center space-x-2 ml-20 rtl:space-x-reverse">
                     <i className="bi bi-list text-2xl"></i>

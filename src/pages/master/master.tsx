@@ -3,10 +3,11 @@ import AdminScreen from "..";
 import { useNavigate } from "react-router-dom";
 import AdminConfirmedMTable from "@/components/custom/AdminConfirmedMTable";
 import AdminNotConfirmedMTable from "@/components/custom/AdminNotConfirmedMTable";
+import AdminRejectedMTable from "@/components/custom/AdminRejectedMTable";
 
 function Master(): JSX.Element {
   const navigate = useNavigate();
-  const [showConfirmed, setShowConfirmed] = useState(true);
+  const [activeTable, setActiveTable] = useState<'confirmed' | 'notConfirmed' | 'rejected'>('confirmed');
 
   function checkLogin(): void {
     const token = localStorage.getItem('token');
@@ -19,28 +20,49 @@ function Master(): JSX.Element {
     checkLogin();
   }, []);
 
+  const renderTable = () => {
+    switch (activeTable) {
+      case 'confirmed':
+        return <AdminConfirmedMTable />;
+      case 'notConfirmed':
+        return <AdminNotConfirmedMTable />;
+      case 'rejected':
+        return <AdminRejectedMTable />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <AdminScreen pageName="Master">
       <div className="mb-4">
         <button
           className={`${
-            showConfirmed ? 'bg-gray-700 text-white' : 'bg-gray-400 text-black'
+            activeTable === 'confirmed' ? 'bg-gray-700 text-white' : 'bg-gray-400 text-black'
           } border hover:bg-gray-700 rounded-md font-semibold py-2 px-4`}
-          onClick={() => setShowConfirmed(true)}
+          onClick={() => setActiveTable('confirmed')}
         >
           Confirmed Masters
         </button>
         <button
           className={`${
-            !showConfirmed ? 'bg-gray-700 text-white' : 'bg-gray-400 text-black'
+            activeTable === 'notConfirmed' ? 'bg-gray-700 text-white' : 'bg-gray-400 text-black'
           } border hover:bg-gray-400 rounded-md font-semibold py-2 px-4 ml-2`}
-          onClick={() => setShowConfirmed(false)}
+          onClick={() => setActiveTable('notConfirmed')}
         >
           Not Confirmed Masters
         </button>
+        <button
+          className={`${
+            activeTable === 'rejected' ? 'bg-gray-700 text-white' : 'bg-gray-400 text-black'
+          } border hover:bg-gray-400 rounded-md font-semibold py-2 px-4 ml-2`}
+          onClick={() => setActiveTable('rejected')}
+        >
+          Rejected Masters
+        </button>
       </div>
 
-      {showConfirmed ? <AdminConfirmedMTable /> : <AdminNotConfirmedMTable />}
+      {renderTable()}
     </AdminScreen>
   );
 }

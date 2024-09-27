@@ -19,7 +19,7 @@ export interface MastersType {
     "userStatus": string
 }
 
-export interface StadiumsType{
+export interface StadiumsType {
     "id": string
     "name": string
     "number": number
@@ -35,14 +35,37 @@ export interface StadiumsType{
     "endHour": number
     "endMinute": number
     "attechmentIds": [
-      string,
-      string,
-      string,
-      string
+        string,
+        string,
+        string,
+        string
     ],
     "isMainAttachmentId": null | string
     "shower": boolean
     "shopping": boolean
     "toilet": boolean
     "favourite": boolean
+}
+
+export interface RejectedMasterType {
+    "id": string
+    "firstName": string
+    "lastName": string
+    "phoneNumber": string
+    "password": string | null,
+    "role": string
+    "userStatus": string
+}
+export interface ClientType{
+    "id": string
+    "firstName": string
+    "lastName": string
+    "phoneNumber": string
+    "orderCount": number | null
+}
+
+export interface ClientResponse {
+    data: {
+        object: ClientType; 
+    };
 }
